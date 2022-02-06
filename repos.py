@@ -31,8 +31,16 @@ data = [{
 
 graph_layout = {
   'title': 'Popular Python Projects',
-  'xaxis': {'title': 'Repo'},
-  'yaxis': {'title': 'Stars'}
+  'xaxis': {
+    'title': 'Repo',
+    'titlefont': {'size':24},
+    'tickfont': {'size': 14}
+  },
+  'yaxis': {
+    'title': 'Stars',
+    'titlefont': {'size':24},
+    'tickfont': {'size': 14}
+  }
 }
 
 fig = {'data': data, 'layout': graph_layout}
