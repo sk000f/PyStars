@@ -13,15 +13,20 @@ print(f"Status code: {r.status_code}")
 print(f"Total repositories: {response['total_count']}")
 
 items = response['items']
-repo_names, stars = [], []
+repo_names, stars,labels = [], [], []
 for item in items:
     repo_names.append(item['name'])
     stars.append(item['stargazers_count'])
+    owner = item['owner']['login']
+    description = item['description']
+    label = f"{owner}<br />{description}"
+    labels.append(label)
 
 data = [{
   'type': 'bar',
   'x': repo_names,
   'y': stars,
+  'hovertext': labels,
   'marker': {
     'color': 'rgb(60,100,150)',
     'line': {'width': 1.5, 'color': 'rgb(25,25,25)'}
