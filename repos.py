@@ -13,18 +13,27 @@ print(f"Status code: {r.status_code}")
 print(f"Total repositories: {response['total_count']}")
 
 items = response['items']
-repo_names, stars,labels = [], [], []
+stars,labels, links = [], [], []
 for item in items:
-    repo_names.append(item['name'])
+    # record number of stars
     stars.append(item['stargazers_count'])
+
+    # build label from owner and description
     owner = item['owner']['login']
     description = item['description']
     label = f"{owner}<br />{description}"
     labels.append(label)
 
+    # add clickable link to bar
+    name = item['name']
+    url = item['html_url']
+    link = f"<a href='{url}'>{name}</a>"
+    links.append(link)
+
+
 data = [{
   'type': 'bar',
-  'x': repo_names,
+  'x': links,
   'y': stars,
   'hovertext': labels,
   'marker': {
